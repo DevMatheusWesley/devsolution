@@ -7,7 +7,7 @@
     <meta name="keywords" content="Videograph, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dev Soluções | Soluções Rápidas, Resultados Permanentes</title>
+    <title>Dev Soluções | Soluções Rápidas, Resultados Duradouros</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
@@ -327,7 +327,7 @@
                             <p>Gerente de Marketing</p>
                             <div class="team__item__social">
                                 <!--<a href="#"><i class="fa fa-github"></i></a>-->
-                                <a href="https://www.linkedin.com/in/bruno-da-silva-marques-19b42a215?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" title="Análista Bruno Marques"><i class="fa fa-linkedin"></i></a>
+                                <a href="#" target="_blank" title="Análista Bruno Marques"><i class="fa fa-linkedin"></i></a>
                                 <!--<a href="#"><i class="fa fa-instagram"></i></a>-->
                             </div>
                         </div>
@@ -339,9 +339,9 @@
                             <h4>JOABE HENRIQUE</h4>
                             <p>Gerente de Desenvolvimento</p>
                             <div class="team__item__social">
-                                <a href="https://github.com/Manasses1" target="_blank" title="Programador Manasses Freitas"><i class="fa fa-github"></i></a>
-                                <a href="https://www.linkedin.com/in/manass%C3%A9s-freitas-7187721aa?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" title="Programador Manasses Freitas"><i class="fa fa-linkedin"></i></a>
-                                <a href="https://www.instagram.com/freitas_manasses?igsh=MXBnZGEwaGxhbGxjdA==" target="_blank" title="Programador Manasses Freitas"><i class="fa fa-instagram"></i></a>
+                                <a href="#" target="_blank" title="Programador Manasses Freitas"><i class="fa fa-github"></i></a>
+                                <a href="#" target="_blank" title="Programador Manasses Freitas"><i class="fa fa-linkedin"></i></a>
+                                <a href="#" target="_blank" title="Programador Manasses Freitas"><i class="fa fa-instagram"></i></a>
                             </div>
                         </div>
                     </div>
@@ -352,15 +352,15 @@
                             <h4>DAVI HERCULE</h4>
                             <p>Gerente de Projetos</p>
                             <div class="team__item__social">
-                                <a href="https://www.linkedin.com/in/cirogsilva?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" title="Analista Empresárial"><i class="fa fa-linkedin"></i></a>
-                                <a href="https://www.instagram.com/cirogoncalves_?igsh=engwYXkzdzJnOTJq" target="_blank" title="Analista Empresárial"><i class="fa fa-instagram"></i></a>
+                                <a href="#" target="_blank" title="Analista Empresárial"><i class="fa fa-linkedin"></i></a>
+                                <a href="#" target="_blank" title="Analista Empresárial"><i class="fa fa-instagram"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-12 p-0">
                     <div class="team__btn">
-                        <a href="https://linktr.ee/DevSolution" target="_blank" title="Equipe Dev Solution" class="primary-btn">CONHEÇA NOSSO TIME</a>
+                        <a href="#" target="_blank" title="Equipe Dev Solution" class="primary-btn">CONHEÇA NOSSO TIME</a>
                     </div>
                 </div>
             </div>
@@ -465,6 +465,132 @@
     
     <!-- Latest Blog Section End -->
 
+    <!-- Botão para abrir o chatbot -->
+    <div id="chatbot-button" onclick="toggleChatbot()">
+        🤚
+    </div>
+
+    <!-- Container do Chatbot -->
+    <div id="chatbot-container">
+        <div id="chatbot-header">
+            <span>Chatbot de Ajuda</span>
+            <button id="close-button" onclick="closeChatbot()">X</button>
+        </div>
+        <div id="chatbot-content">
+            <!-- Mensagens do Chatbot serão adicionadas aqui -->
+        </div>
+        <input type="text" id="user-input" placeholder="Digite sua dúvida..." />
+        <button id="send-button" onclick="sendMessage()">Enviar</button>
+    </div>
+
+    <!-- Adicionando a biblioteca de ícones -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* Estilo para o botão fixo da mão */
+#chatbot-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 30px;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+/* Estilos para o container do chatbot */
+#chatbot-container {
+    position: fixed;
+    right: 20px;
+    bottom: 100px;
+    width: 300px;
+    height: 400px;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    display: none; /* Inicialmente invisível */
+    flex-direction: column;
+    z-index: 999;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos do cabeçalho do chatbot */
+#chatbot-header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px 10px 0 0;
+}
+
+/* Estilos do conteúdo do chatbot */
+#chatbot-content {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    max-height: 280px;
+}
+
+/* Estilo para as mensagens do usuário */
+.user-message {
+    background-color: #d1ffd1;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 10px;
+    align-self: flex-end;
+    max-width: 80%;
+}
+
+/* Estilo para as mensagens do bot */
+.bot-message {
+    background-color: #f1f1f1;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 10px;
+    align-self: flex-start;
+    max-width: 80%;
+}
+
+/* Estilo para o campo de entrada de mensagem */
+#user-input {
+    width: calc(100% - 100px);
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+/* Estilo para o botão de enviar */
+#send-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#send-button:hover {
+    background-color: #45a049;
+}
+
+/* Estilo para o botão de fechar */
+#close-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+    </style>
+
     <!-- Call To Action Section Begin -->
     <section class="callto spad set-bg" data-setbg="img/callto-bg.png">
         <div class="container">
@@ -481,100 +607,115 @@
     </section>
     <!-- Call To Action Section End -->
 
-    <!-- Footer Section Begin -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__top">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="footer__top__logo">
-                            <a href="#"><img src="img/logo.png" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="footer__top__social">
-                            <a href="https://api.whatsapp.com/send?phone=5511982721072" target="_blank" title="Falar no whatsapp da Dev Soluções"><i class="fa fa-whatsapp"></i></a>
-                            <a href="https://www.linkedin.com/in/dev-solution-70b5592b1/" target="_blank" title="Canal Dev Soluções"><i class="fa fa-linkedin"></i></a>
-                            <a href="https://github.com/DevSolutionInc" target="_blank" title="Github Dev Soluções"><i class="fa fa-github"></i></a>
-                            <a href="https://www.instagram.com/dev.solution_?igsh=bGo3M2xxcXRtZndk" target="_blank" title="Instagram Dev Soluções"><i class="fa fa-instagram"></i></a>
-                            <a href="https://www.youtube.com/channel/UCP797LKX85SD7BpD-_M3jrg" target="_blank" title="Canal Dev Soluções"><i class="fa fa-youtube-play"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer__option">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="footer__option__item">
-                            <h5>Sobre nós</h5>
-                            <p>A Dev Soluções, fundada em 2022 por Matheus, Amanda, Davi, Joabe e Samuel, destaca-se como uma 
-                                empresa inovadora no cenário tecnológico.</p>
-                            <a href="./services.html" class="read__more">Consulte para mais informação <span class="arrow_right"></span></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3">
-                        <div class="footer__option__item">
-                            <h5>Quem somos</h5>
-                            <ul>
-                                <li><a href="#">Equipe</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Contato</a></li>
-                                <li><a href="#">Localização</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3">
-                        <div class="footer__option__item">
-                            <h5>Nossos trabalhos</h5>
-                            <ul>
-                                <li><a href="#">Noticias</a></li>
-                                <li><a href="#">Novidades</a></li>
-                                <li><a href="./politica-estrategica-de-seguranca-da-informacao.html">Política de S.I</a></li>
-                                <li><a href="./politica_de_privacidade.html">Política de Privacidade</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="footer__option__item">
-                            <h5>Newsletter</h5>
-                            <p>A Dev Soluções é uma empresa renomada e especializada em serviços completos.</p>
-                            <form action="processar_formulario.php" method="post">
-                                <input type="text" name="email" placeholder="Email" required>
-                                <button type="submit"><i class="fa fa-send"></i></button>
-                            </form>
-                        </div>
+    <!-- Botão fixo com ícone de mão -->
+<div id="helpButton" onclick="toggleChat()">
+    <i class="fas fa-hand-paper"></i>
+</div>
+
+<!-- Caixa de chat -->
+<div id="chatBox" style="display:none;">
+    <div id="chatMessages"></div>
+    <textarea id="chatInput" placeholder="Digite sua dúvida..."></textarea>
+    <button id="sendButton" onclick="sendMessage()">Enviar</button>
+</div>
+
+
+
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer__top">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="footer__top__logo">
+                        <a href="#"><img src="img/logo.png" alt=""></a>
                     </div>
                 </div>
-            </div>
-            <div class="footer__copyright">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        <p class="footer__copyright__text">Copyright &copy;
-                            <script>
-                                document.write(new Date().getFullYear());
-                            </script>
-                            Todos os direitos reservados | Site feito  <i class="bi bi-chevron-bar-expand"
-                                aria-hidden="true"></i> pela <a href="https://api.whatsapp.com/send?phone=5511982721072" target="_blank"
-                                title="Falar com a Dev Solution">DEV SOLUÇÕES</a>
-                        </p>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                <div class="col-lg-6 col-md-6">
+                    <div class="footer__top__social">
+                        <a href="https://api.whatsapp.com/send?phone=5511982721072" target="_blank" title="Falar no whatsapp da Dev Soluções"><i class="fa fa-whatsapp"></i></a>
+                        <a href="https://www.linkedin.com/in/dev-solution-70b5592b1/" target="_blank" title="Canal Dev Soluções"><i class="fa fa-linkedin"></i></a>
+                        <a href="https://github.com/DevSolutionInc" target="_blank" title="Github Dev Soluções"><i class="fa fa-github"></i></a>
+                        <a href="https://www.instagram.com/dev.solution_?igsh=bGo3M2xxcXRtZndk" target="_blank" title="Instagram Dev Soluções"><i class="fa fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/channel/UCP797LKX85SD7BpD-_M3jrg" target="_blank" title="Canal Dev Soluções"><i class="fa fa-youtube-play"></i></a>
                     </div>
                 </div>
             </div>
         </div>
-    </footer>
-    <!-- Footer Section End -->
+        <div class="footer__option">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer__option__item">
+                        <h5>Sobre nós</h5>
+                        <p>A Dev Soluções, fundada em 2022 por Matheus, Amanda, Davi, Joabe e Samuel, destaca-se como uma 
+                            empresa inovadora no cenário tecnológico.</p>
+                        <a href="./services.html" class="read__more">Consulte para mais informação <span class="arrow_right"></span></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-3">
+                    <div class="footer__option__item">
+                        <h5>Quem somos</h5>
+                        <ul>
+                            <li><a href="#">Equipe</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contato</a></li>
+                            <li><a href="#">Localização</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-3">
+                    <div class="footer__option__item">
+                        <h5>Nossos trabalhos</h5>
+                        <ul>
+                            <li><a href="#">Noticias</a></li>
+                            <li><a href="#">Novidades</a></li>
+                            <li><a href="./politica-estrategica-de-seguranca-da-informacao.html">Política de S.I</a></li>
+                            <li><a href="./politica_de_privacidade.html">Política de Privacidade</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="footer__option__item">
+                        <h5>Newsletter</h5>
+                        <p>A Dev Soluções é uma empresa renomada e especializada em serviços completos.</p>
+                        <form action="processar_formulario.php" method="post">
+                            <input type="text" name="email" placeholder="Email" required>
+                            <button type="submit"><i class="fa fa-send"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer__copyright">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <p class="footer__copyright__text">Copyright &copy;
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        Todos os direitos reservados | Site feito  <i class="bi bi-chevron-bar-expand"
+                            aria-hidden="true"></i> pela <a href="https://api.whatsapp.com/send?phone=5511982721072" target="_blank"
+                            title="Falar com a Dev Solution">DEV SOLUÇÕES</a>
+                    </p>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section End -->
 
-    <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/masonry.pkgd.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+<!-- Js Plugins -->
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/mixitup.min.js"></script>
+<script src="js/masonry.pkgd.min.js"></script>
+<script src="js/jquery.slicknav.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/chatbot.js"></script>
 </body>
 
 </html>
